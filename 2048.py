@@ -38,16 +38,15 @@ def reduceDown(a):
     return rotate(reduceRight(rotate(a)))
 
 def rotate(a):
+    def auxset(i, j): b[j][i] = a[i][j]
     b = newEmpty(len(a))
-    for i in range(0, len(a)):
-        for j in range(0, len(a[i])):
-            b[j][i] = a[i][j]
+    map(lambda i: map(lambda j: auxset(i, j), range(0, len(a[i]))), range(0, len(a)))
     return b
 
 def prettyPrint(a):
     for i in a:
         for j in i:
-            print j,
+            print "%4d" % j,
         print
 
 def newEmpty(size):
@@ -87,16 +86,11 @@ def newGame():
     prettyPrint(a)
     while not isWin(a):
         key = raw_input()
-        if key == "w":
-            a = reduceUp(a)
-        elif key == "a":
-            a = reduceLeft(a)
-        elif key == "s":
-            a = reduceDown(a)
-        elif key == "d":
-            a = reduceRight(a)
-        elif key == "q":
-            break
+        if key == "w":   a = reduceUp(a)
+        elif key == "a": a = reduceLeft(a)
+        elif key == "s": a = reduceDown(a)
+        elif key == "d": a = reduceRight(a)
+        elif key == "q": break
         randomNum(a)
         prettyPrint(a)
     if isWin(a):
