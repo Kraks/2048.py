@@ -1,5 +1,5 @@
 #coding=utf8
-#Wei Guannan
+#Wei Guannan <kiss.kraks@gmail.com>
 
 import random
 
