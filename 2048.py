@@ -74,7 +74,7 @@ def isFail(a):
             for j in zip(i, i[1:]):
                 if j[0] == j[1]: return False
         return True
-    return aux(a) or aux(rotate(a))
+    return aux(a) and aux(rotate(a))
     
 def traverse(a, f):
     for line in a:
