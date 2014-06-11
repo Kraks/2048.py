@@ -142,6 +142,6 @@ def test():
     assert reduceLineRight([2, 0, 0, 2]) == [0, 0, 0, 4]
     assert reduceLineRight([4, 4, 2, 2]) == [0, 0, 8, 4]
     assert reduceLineRight([2, 4, 4, 2]) == [0, 2, 8, 2]
-
+    
 if __name__ == "__main__":
     newGame()
