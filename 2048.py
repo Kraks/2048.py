@@ -54,7 +54,7 @@ def newEmpty(size):
 
 def isWin(a):
     for i in a:
-        for j in a:
+        for j in a[i]:
             if j == 2048: return True
     return False
 
