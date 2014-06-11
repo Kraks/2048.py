@@ -3,6 +3,7 @@
 
 import copy
 import random
+from colorama import Fore, Back
 
 def reduceLineLeft(xs): 
     def aux(acc, y):
@@ -41,18 +42,44 @@ def rotate(a):
     return b
 
 def prettyPrint(a):
+    def color(x):
+        if x == 0:    return Fore.RESET + Back.RESET
+        if x == 2:    return Fore.RED + Back.RESET
+        if x == 4:    return Fore.GREEN + Back.RESET
+        if x == 8:    return Fore.YELLOW + Back.RESET
+        if x == 16:   return Fore.BLUE + Back.RESET
+        if x == 32:   return Fore.MAGENTA + Back.RESET
+        if x == 64:   return Fore.CYAN + Back.RESET
+        if x == 128:  return Fore.RED + Back.BLACK
+        if x == 256:  return Fore.GREEN + Back.BLACK
+        if x == 512:  return Fore.YELLOW + Back.BLACK
+        if x == 1024: return Fore.BLUE + Back.BLACK
+        if x == 2048: return Fore.MAGENTA + Back.BLACK
+        if x == 4096: return Fore.CYAN + Back.BLACK
+        if x == 8192: return Fore.WHITE + Back.BLACK
     for i in a:
         for j in i:
-            print "%4d" % j,
+            print color(j) + ("%4d" % j) + Fore.RESET + Back.RESET,
         print
 
 def newEmpty(size):
     return [[0 for i in range(0, size)] for i in range(0, size)]
 
 def isWin(a):
-    for i in a:
-        for j in i:
-            if j == 2048: return True
+    return traverse(a, lambda x: x == 16)
+
+def isFail(a):
+    def aux(a):
+        for i in a:
+            for j in zip(i, i[1:]):
+                if j[0] == j[1]: return False
+        return True
+    return aux(a) or aux(rotate(a))
+    
+def traverse(a, f):
+    for line in a:
+        for ele in line:
+            if f(ele): return True
     return False
 
 def randomPoint(size):
@@ -77,11 +104,12 @@ def randomNum(a):
 def newGame():
     print "w for move up, a for move left, s for move down, d for move right."
     print "q for quit."
+    won = False
     a = newEmpty(4)
     randomInit(a)
     randomInit(a)
     prettyPrint(a)
-    while not isWin(a):
+    while True:
         b = copy.deepcopy(a)
         key = raw_input()
         if key == "w":   a = reduceUp(a)
@@ -89,13 +117,16 @@ def newGame():
         elif key == "s": a = reduceDown(a)
         elif key == "d": a = reduceRight(a)
         elif key == "q": break
-        if a == b: print "no numbers to be reduce"
+        if a == b: 
+            print "no numbers to be reduce"
         else: randomNum(a)
         prettyPrint(a)
-    if isWin(a):
-        print "You win"
-    else:
-        print "You failed"
+        if isWin(a) and not won:
+            print "You win"
+            won = True
+        elif isFail(a):
+            print "You fail"
+            break
 
 def test():
     assert reduceLineLeft([4, 4, 4, 4]) == [8, 8, 0, 0]
@@ -113,8 +144,4 @@ def test():
     assert reduceLineRight([2, 4, 4, 2]) == [0, 2, 8, 2]
 
 if __name__ == "__main__":
-    #test()
-    #prettyPrint(reduceUp([[2, 0, 0, 0], [2, 2, 0, 0], [0, 2, 0, 0], [0, 0, 0, 0]]))
-    #prettyPrint(reduceDown([[2, 0, 0, 0], [2, 2, 0, 0], [0, 2, 0, 0], [0, 0, 0, 0]]))
-    #prettyPrint(reduceDown([[0, 0, 0, 2], [0, 0, 0, 0], [0, 0, 0, 2], [0, 0, 0, 0]]))
     newGame()
