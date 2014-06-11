@@ -66,7 +66,7 @@ def newEmpty(size):
     return [[0 for i in range(0, size)] for i in range(0, size)]
 
 def isWin(a):
-    return traverse(a, lambda x: x == 16)
+    return traverse(a, lambda x: x == 2048)
 
 def isFail(a):
     def aux(a):
