@@ -19,11 +19,7 @@ def reduceLineLeft(xs):
     return res
 
 def reduceLineRight(xs):
-    ys = xs[:]
-    ys.reverse()
-    ys = reduceLineLeft(ys)
-    ys.reverse()
-    return ys
+    return reduceLineLeft(xs[::-1])[::-1]
 
 def reduceLeft(a):
     return map(lambda x: reduceLineLeft(x), a)
@@ -54,7 +50,7 @@ def newEmpty(size):
 
 def isWin(a):
     for i in a:
-        for j in a[i]:
+        for j in i:
             if j == 2048: return True
     return False
 
