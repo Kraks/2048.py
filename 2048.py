@@ -1,9 +1,10 @@
 #coding=utf8
 #Wei Guannan <kiss.kraks@gmail.com>
 
+import copy
 import random
 
-def reduceLineLeft(xs):
+def reduceLineLeft(xs): 
     def aux(acc, y):
         if len(acc) == 0:
             acc.append(y)
@@ -81,13 +82,15 @@ def newGame():
     randomInit(a)
     prettyPrint(a)
     while not isWin(a):
+        b = copy.deepcopy(a)
         key = raw_input()
         if key == "w":   a = reduceUp(a)
         elif key == "a": a = reduceLeft(a)
         elif key == "s": a = reduceDown(a)
         elif key == "d": a = reduceRight(a)
         elif key == "q": break
-        randomNum(a)
+        if a == b: print "no numbers to be reduce"
+        else: randomNum(a)
         prettyPrint(a)
     if isWin(a):
         print "You win"
