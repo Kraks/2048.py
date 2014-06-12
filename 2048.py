@@ -72,7 +72,7 @@ def isFail(a):
     def aux(a):
         for i in a:
             for j in zip(i, i[1:]):
-                if j[0] == j[1] or j[0] == 0 or j[1] == 0: return False
+                if j[0] == 0 or j[1] == 0 or j[0] == j[1]: return False
         return True
     return aux(a) and aux(rotate(a))
     
