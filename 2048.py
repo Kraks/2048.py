@@ -17,7 +17,7 @@ def reduceLineLeft(xs):
         #print acc
         return acc
     res = filter(lambda x: x!=0, reduce(aux, xs, []))
-    res.extend([0 for i in range(0, 4-len(res))])
+    res.extend([0 for i in range(0, len(xs)-len(res))])
     return res
 
 def reduceLineRight(xs):
