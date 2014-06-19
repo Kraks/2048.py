@@ -9,14 +9,13 @@ def reduceLineLeft(xs):
     def aux(acc, y):
         if len(acc) == 0:
             acc.append(y)
-        elif acc[len(acc)-1] == y and y != 0:
+        elif acc[len(acc)-1] == y:
             acc[len(acc)-1] = y * 2
             acc.append(0)
-        elif y != 0:
+        else:
             acc.append(y)
-        #print acc
         return acc
-    res = filter(lambda x: x!=0, reduce(aux, xs, []))
+    res = filter(lambda x: x!=0, reduce(aux, filter(lambda x: x!=0, xs), []))
     res.extend([0 for i in range(0, len(xs)-len(res))])
     return res
 
@@ -101,11 +100,11 @@ def randomNum(a):
         a[x][y] = seed[v]
     else: randomNum(a)
 
-def newGame():
+def newGame(size):
     print "w for move up, a for move left, s for move down, d for move right."
     print "q for quit."
     won = False
-    a = newEmpty(4)
+    a = newEmpty(size)
     randomInit(a)
     randomInit(a)
     prettyPrint(a)
@@ -144,4 +143,4 @@ def test():
     assert reduceLineRight([2, 4, 4, 2]) == [0, 2, 8, 2]
     
 if __name__ == "__main__":
-    newGame()
+    newGame(4)
