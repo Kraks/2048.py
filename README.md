@@ -11,3 +11,7 @@ type `w` and enter for move up, `a` for move left, `s` for move down, and `d` fo
 type `q` for quit.
 
 have fun!
+
+Related
+---
+[2048.rkt](https://github.com/Kraks/2048.rkt)
