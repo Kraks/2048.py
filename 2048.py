@@ -7,8 +7,7 @@ from colorama import Fore, Back
 
 def reduceLineLeft(xs): 
     def aux(acc, y):
-        if len(acc) == 0:
-            acc.append(y)
+        if len(acc) == 0: acc.append(y)
         elif acc[len(acc)-1] == y:
             acc[len(acc)-1] = y * 2
             acc.append(0)
