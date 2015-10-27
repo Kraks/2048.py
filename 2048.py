@@ -12,8 +12,7 @@ def reduceLineLeft(xs):
         elif acc[len(acc)-1] == y:
             acc[len(acc)-1] = y * 2
             acc.append(0)
-        else:
-            acc.append(y)
+        else: acc.append(y)
         return acc
     res = filter(lambda x: x!=0, reduce(aux, filter(lambda x: x!=0, xs), []))
     res.extend([0 for i in range(0, len(xs)-len(res))])
@@ -23,10 +22,10 @@ def reduceLineRight(xs):
     return reduceLineLeft(xs[::-1])[::-1]
 
 def reduceLeft(a):
-    return map(lambda x: reduceLineLeft(x), a)
+    return map(reduceLineLeft, a)
 
 def reduceRight(a):
-    return map(lambda x: reduceLineRight(x), a)
+    return map(reduceLineRight, a)
 
 def reduceUp(a):
     return rotate(reduceLeft(rotate(a)))
