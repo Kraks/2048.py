@@ -99,8 +99,8 @@ def randomNum(a):
     else: randomNum(a)
 
 def newGame(size):
-    print "w for move up, a for move left, s for move down, d for move right."
-    print "q for quit."
+    print "press w to move up, a to move left, s to move down, d to move right."
+    print "press q to quit."
     won = False
     a = newEmpty(size)
     randomInit(a)
