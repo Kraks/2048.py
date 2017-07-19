@@ -6,11 +6,11 @@ A colored text based 2048 game written in Python.
 How to play
 ---
 
-type `w` and enter for move up, `a` for move left, `s` for move down, and `d` for move right.
+Type `w` and enter for moving up, `a` for moving left, `s` for moving down, and `d` for moving right.
 
-type `q` for quit.
+Type `q` for quit.
 
-have fun!
+Have fun!
 
 Related
 ---
